@@ -1,0 +1,22 @@
+# # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # #
+# # Bones++ - Ruby 1.8 based IRC Dice Bot # #
+# # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # #
+
+Based upon: Bones
+Language: Ruby 1.8
+Original Author: Jonathan Drain
+Original Site: http://www.d20source.com/roleplaying-tools/dicebot
+# 
+Description: I've made some tweaks, fixes and modifications to the Bones dice bot Johnathan made and started 
+wondering if other people have made any changes them selves.  So if there are any other people with sweet mods then I 
+hope they find their way here and merge in their changes to this project.  It also proves to my group that the mods 
+I've been making aren't to help me cheat ;)
+
+# # # # # # # # # # # # 
+# Additional Authors  #
+# # # # # # # # # # # # 
+
+injate:  Established git repository, code contributor, changelog will be in commit comments.
+Your Name Here: Gimme all your code to merge!  or get on git you self and request access.
