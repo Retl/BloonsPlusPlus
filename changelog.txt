@@ -1,6 +1,13 @@
 bones
 by Jonathan Drain
 
+v0.05 - June 2011 (git and onward!)
+From now onward I'm just going to keep good commit -m comments to document changes see this page:
+https://github.com/injate/BonesPlusPlus/commits/master
+
+v0.04 - Mar 2009
+Capped number of dice as users could stall the bot by rolling truly huge sets.
+
 v0.03 - Jul 2008
 Fixed warning message on startup.
 Now strips mIRC colour codes.
