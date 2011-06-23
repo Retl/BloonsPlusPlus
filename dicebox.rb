@@ -39,6 +39,14 @@ module Dicebox # dice functions by JD. http://d20.jonnydigital.com/
         times = 1
       end
       
+      # Dice cap
+      error = false
+      if times > 100
+        times = 100
+        error = true
+        comment = comment + ("          " * 10)
+      end
+      
       if times == 1
         sets = [attack[0]]
       else
@@ -77,6 +85,20 @@ module Dicebox # dice functions by JD. http://d20.jonnydigital.com/
       # sample ["+1", "+", "1", nil]
       original, sign, numerator, denominator = element[0], element[1], element[2], element[3]
       sign = "+" unless sign
+      error = false
+      
+      # Dice cap
+      if numerator.to_i > 100
+        numerator = "100"
+        original = sign + numerator + denominator # feign original
+        error = true
+      end
+      
+      if denominator && denominator.delete("d").to_i > 10000
+        denominator = "d10000"
+        original = sign + numerator + denominator  # feign original
+        error = true
+      end
       
       # fix for "d20"
       if (not denominator) and original =~ /^(\+|-)?d(\d+)/
@@ -93,10 +115,18 @@ module Dicebox # dice functions by JD. http://d20.jonnydigital.com/
       else
         result = [numerator.to_i]
       end
-
+      
       # flip result unless sign
       if sign == "-"
         result = result.map{ |r| 0 - r}
+      end
+      
+      # Dice cap
+      # invoke "too many dice message" by triggering long line
+      if error
+        200.times do
+          result << 9999
+        end
       end
       
       return result
