@@ -1,4 +1,4 @@
-#!/usr/env ruby
+#!/usr/bin/env ruby
 #
 # bones v0.03
 # by Jonathan Drain http://d20.jonnydigital.com/roleplaying-tools/dicebot
@@ -14,7 +14,7 @@ require 'dicebox'
 
 module Bones
   class Client # an "instance" of bones; generally only one
-    def initialize(nick, server, port, channels)
+    def initialize(nick, server, port, channels, admin)
       @running = true
       # @dice = Dicebox.new # get out the dice
       
@@ -22,6 +22,7 @@ module Bones
       @server = server # one only
       @port = port
       @channels = channels
+      @admin = admin
 
       connect()
       run()
@@ -31,7 +32,7 @@ module Bones
       @connection = Connection.new(@server, @port)
       
       @connection.speak "NICK #{@nick}"
-      @connection.speak "USER #{@nick} bones * :Bones Dicebot: http://d20.jonnydigital.com/"
+      @connection.speak "USER #{@nick} bones * :Bones++ Dicebot: https://github.com/injate/BonesPlusPlus/"
 
       # TODO: fix join bug
       join(@channels)
@@ -85,12 +86,12 @@ module Bones
     
     def respond(msg)
       # msg :name, :hostname, :mode, :origin, :privmsg, :text
-      if msg.name == "JDigital" && msg.text == "Bones, quit"
+      if msg.name =~ /#{@admin}/ && msg.text =~ /^#{@nick}, quit/i
         quit(msg.text)
       end
      
-      if msg.text =~ /^bones(:|,*) (\S+)( (.*))?/i
-        prefix = "bones"
+      if msg.text =~ /^#{@nick}(:|,*) (\S+)( (.*))?/i
+        prefix = @nick
         command = $2
         args = $4
         # do command - switch statement or use a command handler class
