@@ -1,0 +1,30 @@
+			Bones++ / BonesPlusPlus
+			https://github.com/injate/BonesPlusPlus
+---------------------------------------------------------------------------------------
+			Install Instructions
+
+	 Requirements:	Ruby 1.8
+			Setup bones-go.rb by changing variables to your custom IRC names/servesr/channels.
+			An IRC client
+
+	  Run command:	ruby1.8 bones-go.rb 
+			(from the directory with all the bones files)
+
+	     Examples:	cd /home/dnd/BonesPlusPlus ; ruby1.8 bones-go.rb
+			su - dnd -c 'screen -L -dmS dicebot bash -c "cd /home/dnd/dicebot ; ruby1.8 bones-go.rb"'
+	
+		Notes:
+
+	Bones dice bot requires ruby 1.8.  When I first found the original bones project I attempted running it in the 
+newest version of ruby (1.9.1 at current time) and that didn't fly, errors happened!  So the only trick to remember is 
+make sure you have Ruby 1.8 installed and run bones through the ruby1.8 interpreter.  
+
+	Ruby's website has pretty fantastic documentation about installing so I'll let it do most of the talking:
+
+			http://www.ruby-lang.org/en/downloads/
+
+	However obviously they're providing instructions for the latest version, make sure you grab the right installer.
+for example, in Ubuntu you run `sudo apt-get install ruby1.8-full`.  I'm not afraid to admit I don't support windows 
+well, if you're having problems getting ruby1.8 running on something besides linux you might try asking a site like 
+stackoverflow.com or superuser.com for help.
+
