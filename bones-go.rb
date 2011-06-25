@@ -17,10 +17,11 @@ your_bot_name = "NewBones"
 server_to_join = "irc.esper.net"
 port = 6667
 list_of_channels = ["#bones"]
+player_init_bonuses = {"Fighter" => 2, "Wizard" => 0, "FastRogue" => -3, "SlowRogue" => -1, "Cleric" => 0}
 
 # NOTE: To join multiple networks, you can copy this file to create two Boneses.
 # Alternatively, if you're familiar with Ruby, it should be straightforward. ('_')b
 
 begin
-  client = Bones::Client.new(your_bot_name, server_to_join, port, list_of_channels, admin_name)
+  client = Bones::Client.new(your_bot_name, server_to_join, port, list_of_channels, admin_name, player_init_bonuses)
 end

@@ -14,15 +14,15 @@ require 'dicebox'
 
 module Bones
   class Client # an "instance" of bones; generally only one
-    def initialize(nick, server, port, channels, admin)
+    def initialize(nick, server, port, channels, admin, player_init_bonuses)
       @running = true
-      # @dice = Dicebox.new # get out the dice
       
       @nick = nick
       @server = server # one only
       @port = port
       @channels = channels
       @admin = admin
+      @player_init_bonuses = player_init_bonuses
 
       connect()
       run()
@@ -33,6 +33,9 @@ module Bones
       
       @connection.speak "NICK #{@nick}"
       @connection.speak "USER #{@nick} bones * :Bones++ Dicebot: https://github.com/injate/BonesPlusPlus/"
+      # This needs some work, faking the client port (54520) right now.
+      # http://www.team-clanx.org/articles/socketbot-ident.html
+      @connection.speak "IDENT 54520, #{@port} : USERID : UNIX : #{@nick}"
 
       # TODO: fix join bug
       join(@channels)
@@ -71,6 +74,8 @@ module Bones
       case msg
         when nil
           #nothing
+        when /END OF MESSAGE/ # For irc.gamesurge.net joining ASAP, the 1st join happens too early to work on some servers.
+          join_quietly(@channels)
         when /^PING (.+)$/
           @connection.speak("PONG #{$1}", true) # PING? PONG!
           # TODO: Check if channels are joined before attempting redundant joins
@@ -90,10 +95,12 @@ module Bones
         quit(msg.text)
       end
      
-      if msg.text =~ /^#{@nick}(:|,*) (\S+)( (.*))?/i
+      if msg.text =~ /^#{@nick}(:|,*) ?(\S+)( (.*))?/i
         prefix = @nick
-        command = $2
-        args = $4
+        command = $2.downcase
+        unless $4.nil? #optional args, downcase errors on nil
+          args = $4.downcase
+        end
         # do command - switch statement or use a command handler class
         c = command_handler(prefix, command, args)
         reply(msg, c) if c
@@ -126,7 +133,7 @@ module Bones
     end
     
     def command_handler(prefix, command, args)
-      c = CommandHandler.new(prefix, command, args)
+      c = CommandHandler.new(prefix, command, args, @player_init_bonuses)
       return c.handle
     end
 
@@ -257,15 +264,18 @@ module Bones
   end
 
   class CommandHandler
-    def initialize(prefix, command, args)
+    def initialize(prefix, command, args, player_init_bonuses)
       @prefix = prefix
       @command = command
       @args = args
       @args.strip if @args
+      @player_init_bonuses = player_init_bonuses
     end
     
     def handle
       case @command
+	when "init", "initiative"
+	  result = handle_init
         when "chargen"
           result = handle_chargen
         when "rules", "rule"
@@ -325,6 +335,35 @@ module Bones
 
     def handle_join(client,channel)
       client.join(channel)
+    end
+
+    def handle_init()
+      players = @player_init_bonuses
+      playerRolls = Hash.new
+      playerFullRolls = Hash.new
+      results = '| '
+      resultsFull = '| '
+      players.each { |player,bonus|
+        init = Dicebox::Dice.new("1d10+"+bonus.to_s())
+        initroll = init.roll
+        playerFullRolls[player] = initroll
+        /^[^:]*: (-?\d+)/ =~ initroll 
+        playerRolls[player] = Regexp.last_match(1).to_i(10)
+      }
+      playerRolls = playerRolls.sort {|a,b| a[0]<=>b[0]}
+      playerRolls = playerRolls.sort {|a,b| a[1]<=>b[1]}
+      playerRolls.each { |player,roll|
+        results += "#{player}: #{roll} | "
+        resultsFull += "#{player}: " + playerFullRolls[player] +" | "
+      }
+
+      if @args =~ /details?$/i || @args =~ /full?$/i
+        # Show full rolls
+        return resultsFull
+      else 
+        # Just show the final roll
+        return results
+      end
     end
   end
 end
