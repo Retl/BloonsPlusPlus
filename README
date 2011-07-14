@@ -3,10 +3,10 @@
 # # Bones++ - Ruby 1.8 based IRC Dice Bot # #
 # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # #
-Maintainer: injate
-Site: https://github.com/injate/BonesPlusPlus/
-Changelog: https://github.com/injate/BonesPlusPlus/commits/master
-Install: see INSTALL or https://github.com/injate/BonesPlusPlus/blob/master/INSTALL
+Maintainer: diginc
+Site: https://github.com/diginc/BonesPlusPlus/
+Changelog: https://github.com/diginc/BonesPlusPlus/commits/master
+Install: see INSTALL or https://github.com/diginc/BonesPlusPlus/blob/master/INSTALL
 
 Based upon: Bones
 Original Author: Jonathan Drain
@@ -22,5 +22,5 @@ I've been making aren't to help me cheat ;)
 # Additional Authors  #
 # # # # # # # # # # # #
 
-injate:  Established git repository, code contributor, changelog will be in commit comments.
+diginc:  Established git repository, code contributor, changelog will be in commit comments.
 Your Name Here: Gimme all your code to merge!  or get on git you self and request contributor access.
