@@ -1,26 +1,14 @@
 # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # #
-# # Bones++ - Ruby 1.8 based IRC Dice Bot # #
+# # Bloons++ - Ruby 1.8 based IRC Dice Bot # #
 # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # #
-Maintainer: diginc
-Site: https://github.com/diginc/BonesPlusPlus/
-Changelog: https://github.com/diginc/BonesPlusPlus/commits/master
-Install: see INSTALL or https://github.com/diginc/BonesPlusPlus/blob/master/INSTALL
+Maintainer: Retl
+Site: https://github.com/retl/BloonsPlusPlus/
 
-Based upon: Bones
-Original Author: Jonathan Drain
-Original Site: http://www.d20source.com/roleplaying-tools/dicebot
+Based upon: Bones++, Bones
+Original Authors: diginc, Jonathan Drain
+Original Sites: https://github.com/diginc/BonesPlusPlus/ http://www.d20source.com/roleplaying-tools/dicebot
 Language: Ruby 1.8
 
-Description: I've made some tweaks, fixes and modifications to the Bones dice bot Johnathan made and started 
-wondering if other people have made any changes them selves.  So if there are any other people with sweet mods then I 
-hope they find their way here and merge in their changes to this project.  It also proves to my group that the mods 
-I've been making aren't to help me cheat ;)
-
-# # # # # # # # # # # # 
-# Additional Authors  #
-# # # # # # # # # # # #
-
-diginc:  Established git repository, code contributor, changelog will be in commit comments.
-Your Name Here: Gimme all your code to merge!  or get on git you self and request contributor access.
+Description: It's part me playing around to get a a grounding in ruby, and partly me adding text-based digital toys to the dicebot for use on #FalloutEquestria channel on the Canternet IRC channel when our usual Bones process goes down.
