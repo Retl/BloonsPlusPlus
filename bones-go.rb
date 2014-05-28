@@ -12,11 +12,11 @@ require 'bones'
 # channels too quickly after connecting. Manually encourage it to join with this:
 # /msg bones @@@join #channel
 
-admin_name = "injate"
-your_bot_name = "NewBones"
-server_to_join = "irc.esper.net"
+admin_name = "Retl"
+your_bot_name = "Bloons"
+server_to_join = "irc.canternet.org"
 port = 6667
-list_of_channels = ["#bones"]
+list_of_channels = ["#oddjobcourierooc"]
 player_init_bonuses = {"Fighter" => 2, "Wizard" => 0, "FastRogue" => -3, "SlowRogue" => -1, "Cleric" => 0}
 
 # NOTE: To join multiple networks, you can copy this file to create two Boneses.

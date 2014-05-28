@@ -108,6 +108,10 @@ module Bones
         join $1.to_s
       elsif msg.text == "hay"
         reply(msg, "hay :v")
+      elsif msg.text == "plot"
+        reply(msg, handle_booty)
+      elsif msg.text == "butts"
+        reply(msg, handle_booty)
       elsif msg.text =~ /^(!|@)(\S+)( (.*))?/
         prefix = $1
         command = $2
@@ -162,6 +166,44 @@ module Bones
       @connection.disconnect
       @running = false;
     end
+    
+    #FoE-specific BEGIN
+    def handle_booty
+    
+      booty = []
+      booty << "http://derpibooru.org/523772"
+      booty << "http://derpibooru.org/105657"
+      booty << "http://derpibooru.org/508212"
+      booty << "http://derpibooru.org/417304"
+      booty << "http://derpibooru.org/105675"
+      booty << "http://derpibooru.org/4321"
+      booty << "http://derpibooru.org/104625"
+      booty << "http://derpibooru.org/194027"
+      booty << "http://derpibooru.org/558949"
+      booty << "http://derpibooru.org/558949" #9
+      booty << "http://derpibooru.org/190416"
+      booty << "http://derpibooru.org/161592"
+      booty << "http://derpibooru.org/162805"
+      booty << "http://derpibooru.org/197077"
+      booty << "http://derpibooru.org/290177"
+      booty << "http://derpibooru.org/514504"
+      booty << "http://derpibooru.org/521245"
+      booty << "http://derpibooru.org/564328"
+      booty << "http://derpibooru.org/579481"
+      booty << "http://derpibooru.org/588674" #19
+      booty << "http://derpibooru.org/596565"
+      booty << "http://derpibooru.org/616549"
+      booty << "http://derpibooru.org/621712"
+      
+      
+      selection = rand(booty.length)
+      
+      #result = selection.to_s + ": " + booty[selection]
+      result = booty[selection]
+      return result
+    end
+    
+    #FoE-specific END
   end
 
   class Message
@@ -365,5 +407,7 @@ module Bones
         return results
       end
     end
+    
+    
   end
 end
