@@ -114,7 +114,7 @@ module Bones
       elsif msg.text == "butts"
         reply(msg, handle_booty)
       elsif msg.text == "chargen"
-      	for lines in chargen().split("\n")
+      for lines in chargen().split("\n")
       		reply(msg, lines)
       	end
       elsif msg.text =~ /^(!|@)(\S+)( (.*))?/
