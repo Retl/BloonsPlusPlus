@@ -330,10 +330,6 @@ class Unit
 		result += "Name: " + @myName + ", "
 		result += "Age: " + @age.to_s + ", "
 		result += "Sex: " + @sex + ", "
-		result += "Kind: " + @kind + "\n"
-		
-		#result += "<br />"
-		
 		result += "Level: " + @level.to_s + "\n"
 		result += "STR: " + @strength.to_s + ", "
 		result += "PER: " + @perception.to_s + ", "
