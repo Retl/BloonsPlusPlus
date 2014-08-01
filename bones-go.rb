@@ -3,7 +3,7 @@
 # bones
 # by Jonathan Drain
 
-require_relative 'foebones'
+require 'bones'
 
 # I recommend that you change the name of your bot and the channels it joins to avoid
 # conflict with other dicebots. Check with your network operator to ensure they allow bots.
