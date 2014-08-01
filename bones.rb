@@ -10,8 +10,8 @@
 
 require 'socket'
 require 'strscan'
-require 'dicebox'
-require 'chargen'
+require_relative 'dicebox'
+require_relative 'chargen'
 
 module Bones
   class Client # an "instance" of bones; generally only one
@@ -43,18 +43,16 @@ module Bones
     end
 
     def join(channels)
-      channels.each do |channel|
+      channel = channels
         # join channel
         @connection.speak "JOIN #{channel}"
         puts "Joining #{channel}"
-      end
     end
     
     def join_quietly(channels)
-      channels.each do |channel|
+      channel = channels
         # join channel
         @connection.speak("JOIN #{channel}", true)
-      end
     end
     
     def run # go
@@ -390,7 +388,7 @@ module Bones
       playerFullRolls = Hash.new
       results = '| '
       resultsFull = '| '
-      players.each { |player,bonus|
+      players.each_line { |player,bonus|
         init = Dicebox::Dice.new("1d10+"+bonus.to_s())
         initroll = init.roll
         playerFullRolls[player] = initroll
@@ -399,7 +397,7 @@ module Bones
       }
       playerRolls = playerRolls.sort {|a,b| a[0]<=>b[0]}
       playerRolls = playerRolls.sort {|a,b| a[1]<=>b[1]}
-      playerRolls.each { |player,roll|
+      playerRolls.each_line { |player,roll|
         results += "#{player}: #{roll} | "
         resultsFull += "#{player}: " + playerFullRolls[player] +" | "
       }
